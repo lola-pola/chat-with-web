@@ -1,0 +1,6 @@
+streamlit
+openai
+streamlit-chat
+beautifulsoup4
+requests
+pandas

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "chat-with-web.fullname" . }}
+  labels:
+    {{- include "chat-with-web.labels" . | nindent 4 }}
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: {{ .Values.service.dnsName }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "chat-with-web.selectorLabels" . | nindent 4 }}
